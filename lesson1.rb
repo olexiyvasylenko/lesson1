@@ -5,14 +5,31 @@ class Lesson1
   end
 
   def age(birthday)
-    if birthday.nil?
+    begin
+      years = Date.parse(Time.now.to_s).year - Date.parse(birthday).year
+    rescue
       return 'Invalid Date Format'
     end
-    years = Date.parse(Time.now.to_s).year - Date.parse(birthday).year
-    str = "Я живу #{years} года или #{years * 365} дней или
-          #{years * 365 * 24} часов или #{years * 365 * 24 * 60}
-           минут или #{years * 365 * 24 * 60 * 60} секунд"
+    str = "Я живу #{years} года или #{get_days(years)} дней или
+          #{get_hours(years)} часов или #{get_minutes(years)}
+           минут или #{get_seconds(years)} секунд"
     str
+  end
+
+  def get_days(years)
+    years * 365
+  end
+
+  def get_hours(years)
+    years * 365 * 24
+  end
+
+  def get_minutes(years)
+    years * 365 * 24 * 60
+  end
+
+  def get_seconds(years)
+    years * 365 * 24 * 60 * 60
   end
 
   def name
